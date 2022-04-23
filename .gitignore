@@ -1,0 +1,8 @@
+node_modules
+logs
+uploads
+temp
+.env
+.env.local
+.vscode
+.idea
