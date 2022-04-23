@@ -36,7 +36,7 @@ exports.getAttendancev1 = async (req, res) => {
 exports.getAttendancev2 = async (req, res) => {
     const username = req.params.name;
     try {
-        const records = await Record.find({ username });
+        const records = await Record.find({ username }).sort({ $natural: -1 }).limit(30);
         return res.status(200).json({
             message: `Data for ${username}`,
             data: records
@@ -50,7 +50,7 @@ exports.getAttendancev2 = async (req, res) => {
 }
 
 exports.getDownloadv1 = (req, res) => {
-    
+
 }
 
 exports.postLoginv1 = (req, res) => {
