@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const Record = require("../models/attendance");
 
 exports.handleHome = (req, res) => {
     res.status(301).redirect("/admin/dashboard");
@@ -16,16 +17,40 @@ exports.getDashboard = (req, res) => {
 
 // api
 
-exports.getAttendancev1 = (req, res) => {
-    res.status(200).send("<h1>Coming Soon</h1>");
+exports.getAttendancev1 = async (req, res) => {
+    const date = req.params.date;
+    try {
+        const records = await Record.find({ date }).sort({ duration: -1 });
+        return res.status(200).json({
+            message: `Data for ${date}`,
+            data: records
+        });
+    } catch (err) {
+        return res.status(400).json({
+            message: "No Records Found",
+            error: err.message
+        });
+    }
 }
 
-exports.getAttendancev2 = (req, res) => {
-    res.status(200).send("<h1>Coming Soon</h1>");
+exports.getAttendancev2 = async (req, res) => {
+    const username = req.params.name;
+    try {
+        const records = await Record.find({ username });
+        return res.status(200).json({
+            message: `Data for ${username}`,
+            data: records
+        });
+    } catch (err) {
+        return res.status(400).json({
+            message: "No Records Found",
+            error: err.message
+        });
+    }
 }
 
 exports.getDownloadv1 = (req, res) => {
-    res.status(200).send("<h1>Coming Soon</h1>");
+    
 }
 
 exports.postLoginv1 = (req, res) => {
