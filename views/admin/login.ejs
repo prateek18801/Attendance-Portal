@@ -1,0 +1,12 @@
+<%- include("../includes/start.ejs") %>
+    </head>
+
+    <body>
+        <form name="attendance-form" action="/admin/api/v1/login" method="POST" onsubmit="return validateForm()">
+            <input type="text" name="username" placeholder="username" required>
+            <input type="password" name="password" placeholder="password" required>
+            <button type="submit">Login</button>
+        </form>
+    </body>
+
+    </html>

@@ -1,10 +1,17 @@
 <%- include("../includes/start.ejs") %>
-</head>
-<body>
-    <form action="/api/v1/attendance" method="POST">
-        <input type="text" name="username" placeholder="username" required>
-        <input type="password" name="password" placeholder="password" required>
-        <button type="submit">Submit</button>
-    </form>
-</body>
-</html>
+    <script src="js/mark.js" defer></script>
+    </head>
+
+    <body>
+        <form name="attendance-form" onsubmit="return false">
+            <input type="text" name="username" placeholder="username">
+            <input type="password" name="password" placeholder="password">
+            <button type="submit" onclick="handleSubmit()">Submit</button>
+        </form>
+        <div id="response">
+            <div class="message" id="message"></div>
+            <div class="data" id="details"></div>
+        </div>
+    </body>
+
+    </html>

@@ -1,6 +1,7 @@
 if (process.env.NODE_ENV !== "production") require("dotenv").config();
 
 const express = require("express");
+const cookieparser = require("cookie-parser");
 const path = require("path");
 
 const adminRoutes = require("./routes/admin");
@@ -19,6 +20,7 @@ app.set("view engine", "ejs");
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(cookieparser());
 app.use(express.static(PUBLIC));
 app.use(logger);
 

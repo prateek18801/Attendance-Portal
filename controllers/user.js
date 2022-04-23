@@ -28,7 +28,7 @@ exports.getDashboard = (req, res) => {
 
 exports.getMarkAttendance = (req, res) => {
     res.status(200).render("user/mark", {
-        title: "Mark Your Attendance"
+        title: "Attendance | BDCoE"
     });
 }
 
@@ -40,6 +40,7 @@ exports.postAttendancev1 = async (req, res) => {
         if (!member) {
             return res.status(401).json({
                 message: "Invalid Username",
+                error: "Unauthorised"
             });
         }
 
@@ -47,6 +48,7 @@ exports.postAttendancev1 = async (req, res) => {
         if (!match) {
             return res.status(403).json({
                 message: "Invalid Password",
+                error: "Forbidden"
             });
         }
 
