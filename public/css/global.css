@@ -1,0 +1,11 @@
+:root {
+    --primary: #0f33ff;
+    --shadow: 0 0 4px 2px #e7e7e7;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif
+}

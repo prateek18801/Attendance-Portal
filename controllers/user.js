@@ -4,13 +4,11 @@ const Record = require("../models/attendance");
 const { getDate, getTime, calculateInterval } = require("../utils/datetime");
 
 exports.handleHome = (req, res) => {
-    // check for jwt token
-    // redirect
-    // send to login
+    res.status(200).send("<h1>Coming Soon</h1>");
 }
 
 exports.getLogin = (req, res) => {
-    
+    res.status(200).send("<h1>Coming Soon</h1>");
 }
 
 exports.getDashboard = (req, res) => {
@@ -22,15 +20,13 @@ exports.getDashboard = (req, res) => {
     });
 }
 
-
-// api
-
-
 exports.getMarkAttendance = (req, res) => {
     res.status(200).render("user/mark", {
         title: "Attendance | BDCoE"
     });
 }
+
+// api
 
 exports.postAttendancev1 = async (req, res) => {
     const { username, password } = req.body;

@@ -1,17 +1,26 @@
 <%- include("../includes/start.ejs") %>
+    <link rel="stylesheet" href="css/mark.css">
     <script src="js/mark.js" defer></script>
     </head>
 
     <body>
-        <form name="attendance-form" onsubmit="return false">
-            <input type="text" name="username" placeholder="username">
-            <input type="password" name="password" placeholder="password">
-            <button type="submit" onclick="handleSubmit()">Submit</button>
-        </form>
-        <div id="response">
-            <div class="message" id="message"></div>
-            <div class="data" id="details"></div>
-        </div>
+        <div class="container">
+            <div class="form-container">
+                <div class="form__container-header">
+                    <div>Lab Attendance</div>
+                </div>
+                <form class="attendance-form" name="attendance-form" onsubmit="return false">
+                    <div class="form__input-container">
+                        <input type="text" name="username" placeholder="Username">
+                        <input type="password" name="password" placeholder="Password">
+                    </div>
+                    <button type="submit" onclick="handleSubmit()">Submit</button>
+                </form>
+                <div class="form__container-footer">
+                    <p>Go to your <a href="/">Dashboard</a></p>
+                </div>
+            </div>
+            <div class="response-container" id="response-container"></div>
     </body>
 
     </html>

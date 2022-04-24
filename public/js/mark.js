@@ -1,7 +1,6 @@
 const username = document.forms['attendance-form']['username'];
 const password = document.forms['attendance-form']['password'];
-const message = document.getElementById('message');
-const details = document.getElementById('details');
+const responseContainer = document.getElementById('response-container');
 
 username.focus();
 
@@ -36,21 +35,38 @@ const handleSubmit = async () => {
         body: JSON.stringify(data)
     });
     const json = await response.json();
-
-    message.innerText = json.message;
     
     if (json.error) {
-        alert(json.error);
+        responseContainer.innerHTML = `<div class="timer"></div>
+        <div class="data">
+            <div class="message-red" id="message">${json.message}</div>
+            <div class="details" id="details">
+                <div class="grp1-red">
+                    <div><span id="in-time">${json.error}</span></div>
+                </div>
+            </div>
+        </div>`;
     }
     if (json.data) {
-        details.innerText = `${json.data.in} - ${json.data.out} = ${json.data.duration}ms`;
+        console.log(json.data);
+        responseContainer.innerHTML = `<div class="timer"></div>
+        <div class="data">
+            <div class="message" id="message">${json.message}</div>
+            <div class="details" id="details">
+                <div class="grp1">
+                    <div>Entry: <span id="in-time">${json.data.in}</span></div>
+                    <div>Exit: &nbsp;<span id="out-time">${json.data.out}</span></div>
+                </div>
+                <div class="grp2">Duration: <div id="duration">${Math.floor(json.data.duration / 3600)}h:${Math.floor((json.data.duration % 3600) / 60)}m</div>
+                </div>
+            </div>
+        </div>`;
     }
 
     username.value = '';
     password.value = '';
 
     setTimeout(() => {
-        message.innerText = '';
-        details.innerText = '';
+        responseContainer.innerHTML = '';
     }, 5000);
 }
