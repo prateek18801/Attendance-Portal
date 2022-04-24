@@ -12,7 +12,9 @@ exports.getLogin = (req, res) => {
 }
 
 exports.getDashboard = (req, res) => {
-    res.status(200).send("<h1>Coming Soon</h1>");
+    res.status(200).render("admin/dashboard", {
+        title: "Admin | BDCoE"
+    });
 }
 
 // api
