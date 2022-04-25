@@ -81,5 +81,5 @@ exports.getLogoutv1 = (req, res) => {
     return res.cookie("jwt", '', {
         httpOnly: true,
         maxAge: 1
-    }).status(200).redirect("/login");
+    }).status(200).redirect("/admin/login");
 }
