@@ -48,7 +48,6 @@ const handleSubmit = async () => {
         </div>`;
     }
     if (json.data) {
-        console.log(json.data);
         responseContainer.innerHTML = `<div class="timer"></div>
         <div class="data">
             <div class="message" id="message">${json.message}</div>

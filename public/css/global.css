@@ -1,6 +1,7 @@
 :root {
     --primary: #0f33ff;
-    --shadow: 0 0 4px 2px #e7e7e7;
+    --shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    --shadow-sec: 0 0 8px 1px #ebebeb;
 }
 
 * {
