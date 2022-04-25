@@ -33,8 +33,12 @@ const handleSubmit = async () => {
         referrerPolicy: 'no-referrer',
         body: JSON.stringify(data)
     });
-    const json = await response.json();
+
+    if(response.redirected) {
+        window.location.href = response.url;
+    }
     
+    const json = await response.json();
     if (json.error) {
         alert(json.message);
     }
