@@ -11,14 +11,17 @@ async function fetchMemberList() {
     members = json.data;
 }
 
-
-async function dateQuery() {
+function dateQuery() {
     const date = dateInput.value;
     if (date === '') {
         dateInput.focus();
         return;
     }
+    getAttendance(date);
     dateInput.value = '';
+}
+
+async function getAttendance(date) {
 
     const response = await fetch(`/admin/api/v1/attendance/${date}`);
     const json = await response.json();
@@ -51,4 +54,4 @@ async function dateQuery() {
 
 fetchMemberList();
 const date = new Date();
-dateQuery(date.toISOString().split('T')[0]);
+getAttendance(date.toISOString().split('T')[0]);
