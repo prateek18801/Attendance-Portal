@@ -26,7 +26,6 @@ const userSchema = new mongoose.Schema({
     },
     contact: {
         type: String,
-        required: true,
         unique: true
     },
     branch: {
@@ -38,11 +37,10 @@ const userSchema = new mongoose.Schema({
         required: true
     },
     domain: {
-        type: String,
-        required: true
+        type: String
     },
-    joining: {
-        type: String,
+    year: {
+        type: Number,
         required: true
     },
     timestamp: {

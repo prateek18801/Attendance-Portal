@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const Record = require("../models/attendance");
+const User = require("../models/user");
 
 exports.handleHome = (req, res) => {
     res.status(301).redirect("/admin/dashboard");
@@ -42,6 +43,21 @@ exports.getAttendancev2 = async (req, res) => {
         return res.status(200).json({
             message: `Data for ${username}`,
             data: records
+        });
+    } catch (err) {
+        return res.status(400).json({
+            message: "No Records Found",
+            error: err.message
+        });
+    }
+}
+
+exports.getMembersv1 = async (req, res) => {
+    try {
+        const users = await User.find({});
+        return res.status(200).json({
+            message: "Members List",
+            data: users
         });
     } catch (err) {
         return res.status(400).json({

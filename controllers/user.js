@@ -96,16 +96,17 @@ exports.postAttendancev1 = async (req, res) => {
 }
 
 exports.postRegisterv1 = async (req, res) => {
-    const { username, email, password, fullname, stdno, contact, branch, section, domain, joining } = req.body;
+    const { username, email, password, fullname, stdno, contact, branch, section, year } = req.body;
     try {
         const hash = await bcrypt.hash(password, 7);
-        const user = new User({ username, email, password: hash, fullname, stdno, contact, branch, section, domain, joining });
+        const user = new User({ username, email, password: hash, fullname, stdno, contact, branch, section, year });
         const saved = await user.save();
         return res.status(201).json({
             message: "User Registered Successfully",
             data: saved
         });
     } catch (err) {
+        console.log(err);
         return res.status(400).json({
             message: "Error",
             error: err.message

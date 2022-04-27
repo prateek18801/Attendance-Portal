@@ -4,6 +4,14 @@ const strengthCount = document.getElementById("strength");
 const dateDisplay = document.getElementById("data-date");
 const durationDisplay = document.getElementById("duration");
 
+let members = [];
+async function fetchMemberList() {
+    const response = await fetch(`/admin/api/v1/members`);
+    const json = await response.json();
+    members = json.data;
+}
+
+
 async function dateQuery() {
     const date = dateInput.value;
     if (date === '') {
@@ -19,24 +27,28 @@ async function dateQuery() {
 
     let domContent = "";
     let sno = 0;
-    let maxduration = 0;
+    let maxOutTime = "";
     json.data.forEach(record => {
         sno++;
-        maxduration = (record.duration > maxduration) ? record.duration : maxduration;
+        console.log(members);
+        maxOutTime = (record.out > maxOutTime) ? record.out : maxOutTime;
+        const object = members.find(({ username }) => username === record.username);
         domContent += `<tr>
             <td>${sno}</td>
-            <td>dummy name</td>
-            <td>0000000</td>
-            <td>ABCD</td>
-            <td>0</td>
+            <td>${object.fullname}</td>
+            <td>${object.stdno}</td>
+            <td>${object.branch}</td>
+            <td>${object.year}</td>
             <td>${record.in}</td>
-            <td>${record.out}</td>
+            <td>${record.out === record.in ? "-" : record.out}</td>
             <td>${Math.floor(record.duration / 3600)}h:${Math.floor((record.duration % 3600) / 60)}m</td>
             <td>${record.username}</td>
         </tr>`
     });
-
-    // pending - change relative to 4pm
-    durationDisplay.innerHTML = `<b>Duration:</b> ${Math.floor(maxduration / 3600)}h:${Math.floor((maxduration % 3600) / 60)}m`
+    durationDisplay.innerHTML = `<b>Duration:</b> ${+maxOutTime.split(':')[0] - 16}h:${+maxOutTime.split(':')[1]}m`;
     tableBody.innerHTML = domContent;
 }
+
+fetchMemberList();
+const date = new Date();
+dateQuery(date.toISOString().split('T')[0]);
