@@ -99,7 +99,7 @@ exports.postRegisterv1 = async (req, res) => {
     const { username, email, password, fullname, stdno, contact, branch, section, year } = req.body;
     try {
         const hash = await bcrypt.hash(password, 7);
-        const user = new User({ username, email, password: hash, fullname, stdno, contact, branch, section, year });
+        const user = new User({ username: username.trim().toLowerCase(), email, password: hash, fullname, stdno, contact, branch, section, year });
         const saved = await user.save();
         return res.status(201).json({
             message: "User Registered Successfully",
