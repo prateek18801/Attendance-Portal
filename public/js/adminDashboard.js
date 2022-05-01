@@ -5,20 +5,31 @@ const dateDisplay = document.getElementById("data-date");
 const durationDisplay = document.getElementById("duration");
 
 let members = [];
+const date = new Date();
+
 async function fetchMemberList() {
     const response = await fetch(`/admin/api/v1/members`);
     const json = await response.json();
     members = json.data;
+    getAttendance(date.toISOString().split('T')[0]);
 }
 
 function dateQuery() {
-    const date = dateInput.value;
-    if (date === '') {
+    const datevalue = dateInput.value;
+    if (datevalue === '') {
         dateInput.focus();
         return;
     }
-    getAttendance(date);
-    dateInput.value = '';
+    getAttendance(datevalue);
+}
+
+function download() {
+    let datevalue = dateInput.value;
+    console.log(datevalue);
+    if (datevalue === '') {
+        datevalue = date.toISOString().split('T')[0];
+    }
+    downloadList(datevalue);
 }
 
 async function getAttendance(date) {
@@ -33,7 +44,6 @@ async function getAttendance(date) {
     let maxOutTime = "";
     json.data.forEach(record => {
         sno++;
-        console.log(members);
         maxOutTime = (record.out > maxOutTime) ? record.out : maxOutTime;
         const object = members.find(({ username }) => username === record.username);
         domContent += `<tr>
@@ -48,10 +58,18 @@ async function getAttendance(date) {
             <td>${record.username}</td>
         </tr>`
     });
-    durationDisplay.innerHTML = `<b>Duration:</b> ${+maxOutTime.split(':')[0] - 16}h:${+maxOutTime.split(':')[1]}m`;
+    durationDisplay.innerHTML = `<b>Duration:</b> ${+maxOutTime.split(':')[0] - 11}h:${+maxOutTime.split(':')[1]}m`;
     tableBody.innerHTML = domContent;
 }
 
+async function downloadList(date) {
+    const response = await fetch(`/admin/api/v1/download/${date}`);
+    const blob = await response.blob();
+    const a = document.createElement("a");
+    a.href = window.URL.createObjectURL(blob);
+    a.download = `lab-${date}`;
+    a.click();
+    a.remove();
+}
+
 fetchMemberList();
-const date = new Date();
-getAttendance(date.toISOString().split('T')[0]);

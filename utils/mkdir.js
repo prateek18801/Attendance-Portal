@@ -5,3 +5,9 @@ exports.logDir = () => {
         fs.mkdirSync("logs");
     }
 }
+
+exports.dataDir = () => {
+    if (!fs.existsSync("data")) {
+        fs.mkdirSync("data");
+    }
+}

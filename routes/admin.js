@@ -14,6 +14,6 @@ router.post("/api/v1/login", adminController.postLoginv1);
 router.get("/api/v1/members", authorization, adminController.getMembersv1);
 router.get("/api/v1/attendance/:date", authorization, adminController.getAttendancev1);
 router.get("/api/v2/attendance/:name", authorization, adminController.getAttendancev2);
-router.get("/api/v1/download/:month", authorization, adminController.getDownloadv1);
+router.get("/api/v1/download/:date", authorization, adminController.getDownloadv1);
 
 module.exports = router;

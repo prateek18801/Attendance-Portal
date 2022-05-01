@@ -8,9 +8,13 @@ const adminRoutes = require("./routes/admin");
 const userRoutes = require("./routes/user");
 const logger = require("./middlewares/logger");
 
+const { logDir, dataDir } = require("./utils/mkdir");
+const { connect } = require("./config/dbConfig");
+
 const app = express();
-require("./utils/mkdir").logDir();
-require("./config/dbConfig").connect();
+logDir();
+dataDir();
+connect();
 
 const HOST = process.env.HOST;
 const PORT = process.env.PORT;
