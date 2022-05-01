@@ -1,7 +1,21 @@
 a {
     color: var(--primary);
 }
+body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: #0431B4;
+    position: relative;
+    /* background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url("C:\Users\bdcoe\Desktop\New folder\Attendance-Portal\views\user\img.jpg") */
 
+}
+#particles-js{
+    height: 100vh;
+    z-index: -1;
+    position: absolute;
+    
+}
 input {
     width: 85%;
     height: 2.5rem;
@@ -25,6 +39,8 @@ button {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    z-index: 100;
+    
 }
 
 .form-container {
@@ -39,6 +55,8 @@ button {
     margin: 0.5rem 0;
     border-radius: 5px;
     box-shadow: var(--shadow-sec);
+    background: #ffffff;
+    box-shadow: 2px 2px 10px #99ffbb;
 }
 
 .form__container-header {
@@ -47,6 +65,8 @@ button {
     justify-content: center;
     width: 100%;
     height: 20%;
+    font-weight: 600;
+    color: #000000;
 }
 
 .form__container-header div {
@@ -100,6 +120,8 @@ button {
     border-radius: 5px;
     box-shadow: var(--shadow-sec);
     overflow: hidden;
+    box-shadow: 2px 2px 10px #99ffbb;
+    background: #ffffff;
 }
 
 .timer {
@@ -198,3 +220,37 @@ button {
         width: 0%;
     }
 }
+.dash{
+    width: 100%;
+    background-color: #99ffbb;
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding: 10px;
+    transition-duration: 0.3s;
+
+}
+a{
+    width: 85%;
+    margin-top: -25px;
+}
+.dash:hover{
+    background-color: #89cfdd;
+    transition-duration: 0.3s;
+/* 
+}
+.h-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.text {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #000;    
+}
+.text span{
+    /* color: ; */
+}
+/* button{
+    background-color: #99ffbb;
+}  */
